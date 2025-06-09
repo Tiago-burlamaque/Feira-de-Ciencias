@@ -1,0 +1,17 @@
+body{
+    margin: 0;
+}
+.container-lado-esquerdo{
+    background-color: #fefefe;
+    width: 50%;
+    height: 100vh;
+    
+}
+.container-site{
+    display: flex;
+}
+.container-lado-direiro{
+    background-color: #fefefe;
+    height: 100vh;
+    width: 50%;
+}
