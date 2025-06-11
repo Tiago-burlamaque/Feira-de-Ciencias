@@ -14,4 +14,26 @@ body{
     background-color: #fefefe;
     height: 100vh;
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-lado-direiro img{
+    border-radius: 50px;
+    box-shadow: 0 0 10px #6f1ab4;
+}
+.container-lado-esquerdo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+.container-lado-esquerdo button{
+    border: 1px solid #000;
+    background-color: #000;
+    color: #fefefe;
+    padding: 10px;
+    border-radius: 10px;
 }
