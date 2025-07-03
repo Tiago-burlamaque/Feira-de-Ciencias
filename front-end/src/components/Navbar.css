@@ -1,0 +1,138 @@
+ /* Resetando estilos padrões
+ {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ Estilos gerais da navbar 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu li a {
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.menu li a:hover {
+    background-color: #575757;
+}
+
+ Estilo do menu suspenso 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+ Efeito ao rolar a página 
+.navbar.scrolled {
+    background-color: #222;
+}  */
+
+/* Resetando estilos padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais da navbar */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.menu li a:hover {
+    background-color: #575757;
+    border-radius: 10px;
+    
+}
+
+/* Estilo do botão interativo */
+.btn-interativo {
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efeito de hover no botão */
+.btn-interativo:hover {
+    background-color: #cc5200;
+    box-shadow: 0 0 10px #cc5200;
+}
+
+/* Efeito ao rolar a página */
+.navbar.scrolled {
+    background-color: #222;
+}
+
