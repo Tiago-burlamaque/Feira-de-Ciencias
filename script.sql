@@ -1,0 +1,7 @@
+CREATE TABLE cadastro(
+	id_cadastro INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(45) NOT NULL,
+    nota INT NOT NULL
+);
+SELECT * FROM cadastro;
+DROP TABLE cadastro;
