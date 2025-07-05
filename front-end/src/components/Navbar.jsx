@@ -34,12 +34,7 @@ function Navbar() {
    const [inputNota, setInputNota] = useState('')
    const [inputAlunoOuProfessor, setInputAlunoOuProfessor] = useState('')
 
-   const [menuAberto, setMenuAberto] = useState(false);
-
-   const toggleMenu = () => {
-    setMenuAberto(!menuAberto);
-   }
-
+  
       useEffect(() => {
         fetchUsuarios();
     }, []);
@@ -51,10 +46,10 @@ function Navbar() {
 
    const fetchUsuarios = async () => {
      try {
-         const response = await axios.get('http://localhost:3001/Usuarios');
+         const response = await axios.get('http://localhost:14127/Usuarios');
          setUsuarios(response.data);
      } catch (error) {
-         console.error('Erro ao buscar clientes:', error);
+         console.error('Erro ao buscar usários:', error);
      }
  };
 
@@ -78,7 +73,7 @@ function Navbar() {
         setErro("A nota deve ser 0 a 10")
         return;
        } else if (inputNota >= 0 && inputNota <= 10){
-        const response = await axios.post('http://localhost:3001/Usuarios', usuario);
+        const response = await axios.post('http://localhost:14127/Usuarios', usuario);
         if (response.status === 201) {
           alert(`Obrigado pela nota ${inputNome}!`)
           closeModal();

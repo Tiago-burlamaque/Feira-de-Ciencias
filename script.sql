@@ -1,3 +1,7 @@
+CREATE DATABASE feira_de_ciencias;
+
+USE feira_de_ciencias;
+
 CREATE TABLE cadastro(
 	id_cadastro INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(45) NOT NULL,

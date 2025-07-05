@@ -4,10 +4,10 @@ const mysql = require('mysql2/promise');
 
 const app = express();
 const pool = mysql.createPool({
-    host: 'localhost',
+    host: 'switchyard.proxy.rlwy.net',
     user: 'root',      // Altere para o nome do seu user no MySQL
-    password: 'senai',    // Altere para a senha correta
-    database: 'feira_de_ciencias',
+    password: 'OnQZJHFMGHUkwHfdmlFgYBkoblfdNIIy',    // Altere para a senha correta
+    database: 'railway',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -41,11 +41,11 @@ app.get('/Usuarios/:id', async (req, res) => {
 });
 
 app.post('/Usuarios', async (req, res) => {
-    const { nome, nota } = req.body;
+    const { nome, nota, professor_aluno } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO cadastro (nome, nota) VALUES (?, ?)',
-            [nome, nota]
+            'INSERT INTO cadastro (nome, nota, professor_aluno) VALUES (?, ?, ?)',
+            [nome, nota, professor_aluno]
         );
         const [novoUsuario] = await pool.query('SELECT * FROM cadastro WHERE id_cadastro = ?', [result.insertId]);
         res.status(201).json(novoUsuario[0]);
@@ -57,11 +57,11 @@ app.post('/Usuarios', async (req, res) => {
 
 app.put('/Usuarios/:id', async (req, res) => {
     const { id } = req.params;
-    const { nome, nota } = req.body;
+    const { nome, nota, professor_aluno } = req.body;
     try {
         const [result] = await pool.query(
-            'UPDATE cadastro SET nome = ?, nota = ? WHERE id_cadastro = ?',
-            [nome, nota, id]
+            'UPDATE cadastro SET nome = ?, nota = ?, professor_aluno = ? WHERE id_cadastro = ?',
+            [nome, nota, professor_aluno, id]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Usuário não encontrado' });
@@ -88,6 +88,6 @@ app.delete('/Usuarios/:id', async (req, res) => {
     }
 });
 
-app.listen(3001, () => {
-    console.log('Servidor rodando na porta 3001');
+app.listen(14127, () => {
+    console.log('Servidor rodando na porta 14127');
 });
