@@ -32,26 +32,24 @@ function Navbar() {
 
    const [inputNome, setInputNome] = useState('')
    const [inputNota, setInputNota] = useState('')
-   const [inputAlunoOuProfessor, setInputAlunoOuProfessor] = useState('')
 
-  
-      useEffect(() => {
+    const fetchUsuarios = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/Usuarios');
+            setUsuarios(response.data);
+        } catch (error) {
+            console.error('Erro ao buscar usuário:', error);
+        }
+    };
+
+    useEffect(() => {
         fetchUsuarios();
     }, []);
-
     
        useEffect(() => {
          console.log(usuarios);
        }, [usuarios])
 
-   const fetchUsuarios = async () => {
-     try {
-         const response = await axios.get('http://localhost:14127/Usuarios');
-         setUsuarios(response.data);
-     } catch (error) {
-         console.error('Erro ao buscar usários:', error);
-     }
- };
 
   
    const cadastrarUsuario = async () => {
@@ -59,10 +57,9 @@ function Navbar() {
      try {
        const usuario = {
          nome: inputNome,
-         nota: inputNota,
-         professor_aluno : inputAlunoOuProfessor
+         nota: inputNota
         };
-        if (!inputNome && !inputNota && !inputAlunoOuProfessor) {
+        if (!inputNome && !inputNota) {
         setErro('Preencha os campos vázios')
          return;
        }
@@ -73,11 +70,11 @@ function Navbar() {
         setErro("A nota deve ser 0 a 10")
         return;
        } else if (inputNota >= 0 && inputNota <= 10){
-        const response = await axios.post('http://localhost:14127/Usuarios', usuario);
+        const response = await axios.post('http://localhost:3000/Usuarios', usuario);
         if (response.status === 201) {
           alert(`Obrigado pela nota ${inputNome}!`)
-          closeModal();
           limparForm();
+          closeModal();
         }
       }
           } catch (error) {
@@ -87,7 +84,6 @@ function Navbar() {
      }
 
      function limparForm() {
-      setInputAlunoOuProfessor('')
       setInputNome('')
       setInputNota('')
       setErro('')
@@ -135,12 +131,6 @@ function Navbar() {
          required
           /> 
 
-        <input 
-        type="text"
-        placeholder='Você é aluno ou professor?'
-        value={inputAlunoOuProfessor}
-        onChange ={(event) => setInputAlunoOuProfessor(event.target.value)}
-        required />
           {/* <select value={options} onChange={(e) => setOptions(e.target.value)}> 
             <option value="">Selecionar</option>
             <option value="professor">Avaliador/professor</option>
