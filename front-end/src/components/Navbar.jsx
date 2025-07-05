@@ -1,65 +1,162 @@
 import { Link } from 'react-router-dom'
 import './Navbar.css'
-import Paginainicial from '../pages/Paginainicial'
+import './Modal.css'
+import axios from  'axios'
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function Navbar() {
 
-// window.onscroll = function() {
-//     let navbar = document.querySelector('.navbar');
-//     if (window.scrollY > 50) {
-//         navbar.classList.add('scrolled');
-//     } else {
-//         navbar.classList.remove('scrolled');
-//     }
-// };
+  const [darkMode, setDarkMode] = useState(false);
 
-// Script para mudar a cor da navbar ao rolar a página
+  useEffect(() => {
+    // Aplica a classe "dark" ao body quando darkMode for true
+    if (darkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [darkMode]);
 
-// -------------------------------------------------------------- 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  }
 
-// window.onscroll = function() {
-//     let navbar = document.querySelector('.navbar');
-//     if (window.scrollY > 50) {
-//         navbar.classList.add('scrolled');
-//     } else {
-//         navbar.classList.remove('scrolled');
-//     }
-// };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [erro, setErro] = useState('');
 
-// // Script para alterar o estilo do botão ao ser clicado
-// document.getElementById('btn').addEventListener('click', function() {
-//     this.classList.toggle('active');
-//     if (this.classList.contains('active')) {
-//         this.innerHTML = 'Você clicou!';
-//     } else {
-//         this.innerHTML = 'Clique Aqui';
-//     }
-// });
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+   const [usuarios, setUsuarios] = useState([])
+
+   const [inputNome, setInputNome] = useState('')
+   const [inputNota, setInputNota] = useState('')
+   const [inputAlunoOuProfessor, setInputAlunoOuProfessor] = useState('')
+
+   const [menuAberto, setMenuAberto] = useState(false);
+
+   const toggleMenu = () => {
+    setMenuAberto(!menuAberto);
+   }
+
+      useEffect(() => {
+        fetchUsuarios();
+    }, []);
+
+    
+       useEffect(() => {
+         console.log(usuarios);
+       }, [usuarios])
+
+   const fetchUsuarios = async () => {
+     try {
+         const response = await axios.get('http://localhost:3001/Usuarios');
+         setUsuarios(response.data);
+     } catch (error) {
+         console.error('Erro ao buscar clientes:', error);
+     }
+ };
+
+  
+   const cadastrarUsuario = async () => {
+
+     try {
+       const usuario = {
+         nome: inputNome,
+         nota: inputNota,
+         professor_aluno : inputAlunoOuProfessor
+        };
+        if (!inputNome && !inputNota && !inputAlunoOuProfessor) {
+        setErro('Preencha os campos vázios')
+         return;
+       }
+      //  if (nulo){
+      //   setErro('Opção inválida')
+      //  }
+       else if (inputNota < 0 || inputNota > 10) {
+        setErro("A nota deve ser 0 a 10")
+        return;
+       } else if (inputNota >= 0 && inputNota <= 10){
+        const response = await axios.post('http://localhost:3001/Usuarios', usuario);
+        if (response.status === 201) {
+          alert(`Obrigado pela nota ${inputNome}!`)
+          closeModal();
+          limparForm();
+        }
+      }
+          } catch (error) {
+           console.error('Erro ao adicionar cliente:', error);
+
+       }
+     }
+
+     function limparForm() {
+      setInputAlunoOuProfessor('')
+      setInputNome('')
+      setInputNota('')
+      setErro('')
+     }
+
 
   return (
-  //  <nav className="navbar">
-  //       <ul className="menu">
-  //           <li><Link >Home</Link></li>
-  //           <li><Link >Sobre</Link></li>
-  //           <li className="dropdown">
-  //               <Link  className="dropbtn">Serviços</Link>
-  //               <div classNamess="dropdown-content">
-  //                   <Link >Desenvolvimento</Link>
-  //                   <Link >Design</Link>
-  //                   <Link >Consultoria</Link>
-  //               </div>
-  //           </li>
-  //           <li><Link>Contato</Link></li>
-  //       </ul>
-  //   </nav>
-     <nav class="navbar">
-        <ul class="menu">
-            <li><Link to={'/'}>consumo de água</Link></li>
+
+     <nav className="navbar">
+        <ul className="menu">
+            <li><Link to={'/consumodeagua'}>consumo de água</Link></li>
             <li><Link to={'/'}>consumo de energia</Link></li>
             <li><Link to={'/'}>Dicas de reciclagem</Link></li>
             <li><Link to={'/'}>Como foi feito o site</Link></li>
         </ul>
-        <button class="btn-interativo" id="btn">Dar nota</button>
+  <button onClick={toggleDarkMode} className='btn-dark-mode'>
+        {darkMode ? '☀️ Modo Claro' : '🌙 Modo Escuro'}
+      </button>
+        <button className="btn-nota" id="btn" onClick={openModal}>Dar nota</button>
+
+    
+        {isModalOpen && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+               <div className="fim">
+            <span onClick={closeModal} className='close-modal'>&times;</span>
+         <div className="btn-close-modal">
+               <h1>O que você achou?</h1> 
+              </div>
+         </div>
+        <input 
+        type="text"
+        placeholder='Nome'
+        value={inputNome}
+        onChange={(event) => setInputNome(event.target.value)}
+        required
+         />
+
+         <input 
+         type="number"
+         placeholder='Nota'
+         value={inputNota}
+         max={10}
+         onChange={(event) => setInputNota(event.target.value)}
+         required
+          /> 
+
+        <input 
+        type="text"
+        placeholder='Você é aluno ou professor?'
+        value={inputAlunoOuProfessor}
+        onChange ={(event) => setInputAlunoOuProfessor(event.target.value)}
+        required />
+          {/* <select value={options} onChange={(e) => setOptions(e.target.value)}> 
+            <option value="">Selecionar</option>
+            <option value="professor">Avaliador/professor</option>
+            <option value="aluno">Aluno</option>
+          </select> */}
+
+         <button onClick={cadastrarUsuario} className='btn-get'>Mandar para o banco de dados</button> 
+            {erro && <p style={{color: 'red' }}>{erro}</p>}
+            </div>
+          </div>
+        )}
     </nav>
 
   )
