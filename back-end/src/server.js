@@ -4,11 +4,10 @@ const mysql = require('mysql2/promise');
 
 const app = express();
 const pool = mysql.createPool({
-    host: 'switchyard.proxy.rlwy.net',
+    host: 'localhost',
     user: 'root',      // Altere para o nome do seu user no MySQL
-    password: 'OnQZJHFMGHUkwHfdmlFgYBkoblfdNIIy',    // Altere para a senha correta
-    database: 'railway',
-    port: 14127,
+    password: 'futlast',    // Altere para a senha correta
+    database: 'feira_de_ciencias',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -43,9 +42,9 @@ app.get('/Usuarios/:id', async (req, res) => {
 
 app.post('/Usuarios', async (req, res) => {
     const { nome, nota } = req.body;
-    try {
+    try {   
         const [result] = await pool.query(
-            'INSERT INTO cadastro (nome, nota ) VALUES (?, ?)',
+            'INSERT INTO cadastro (nome, nota) VALUES (?, ?)',
             [nome, nota]
         );
         const [novoUsuario] = await pool.query('SELECT * FROM cadastro WHERE id_cadastro = ?', [result.insertId]);
@@ -58,10 +57,10 @@ app.post('/Usuarios', async (req, res) => {
 
 app.put('/Usuarios/:id', async (req, res) => {
     const { id } = req.params;
-    const { nome, nota } = req.body;
+    const { nome, nota,  } = req.body;
     try {
         const [result] = await pool.query(
-            'UPDATE cadastro SET nome = ?, nota =  WHERE id_cadastro = ?',
+            'UPDATE cadastro SET nome = ?, nota = ? WHERE id_cadastro = ?',
             [nome, nota, id]
         );  
         if (result.affectedRows === 0) {

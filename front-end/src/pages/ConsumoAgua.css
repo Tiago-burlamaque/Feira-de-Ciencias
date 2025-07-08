@@ -1,0 +1,19 @@
+.baixo{
+    width: 90%;
+    height: 50%;
+    margin: 10px 0px;
+    border: none;
+    box-shadow: 0 0 10px #000;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-navbar{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}

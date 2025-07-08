@@ -32,6 +32,7 @@ function Navbar() {
 
    const [inputNome, setInputNome] = useState('')
    const [inputNota, setInputNota] = useState('')
+   const [inputProfessorOuAluno, setInputProfessorOuAluno] = useState('')
 
     const fetchUsuarios = async () => {
         try {
@@ -57,9 +58,10 @@ function Navbar() {
      try {
        const usuario = {
          nome: inputNome,
-         nota: inputNota
+         nota: inputNota,
+         professorOuAluno: inputProfessorOuAluno  
         };
-        if (!inputNome && !inputNota) {
+        if (!inputNome && !inputNota && !inputProfessorOuAluno) {
         setErro('Preencha os campos vázios')
          return;
        }
@@ -78,7 +80,7 @@ function Navbar() {
         }
       }
           } catch (error) {
-           console.error('Erro ao adicionar cliente:', error);
+           console.error('Erro ao adicionar usuário:', error);
 
        }
      }
@@ -94,10 +96,10 @@ function Navbar() {
 
      <nav className="navbar">
         <ul className="menu">
-            <li><Link to={'/consumodeagua'}>consumo de água</Link></li>
-            <li><Link to={'/'}>consumo de energia</Link></li>
-            <li><Link to={'/'}>Dicas de reciclagem</Link></li>
-            <li><Link to={'/'}>Como foi feito o site</Link></li>
+            <li><Link to={'/consumodeagua'}>Água</Link></li>
+            <li><Link to={'/'}>Energia</Link></li>
+            <li><Link to={'/'}>Reciclagem</Link></li>
+            <li><Link to={'/'}>Sobre</Link></li>
         </ul>
   <button onClick={toggleDarkMode} className='btn-dark-mode'>
         {darkMode ? '☀️ Modo Claro' : '🌙 Modo Escuro'}
@@ -130,6 +132,14 @@ function Navbar() {
          onChange={(event) => setInputNota(event.target.value)}
          required
           /> 
+
+          <input 
+          type="text"
+          placeholder='Você é estudante ou professor'
+          value={inputProfessorOuAluno}
+          onChange={(event) => setInputProfessorOuAluno(event.target.value)}
+          required
+           />
 
           {/* <select value={options} onChange={(e) => setOptions(e.target.value)}> 
             <option value="">Selecionar</option>
