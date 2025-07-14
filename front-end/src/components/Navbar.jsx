@@ -56,10 +56,10 @@ function Navbar() {
    const cadastrarUsuario = async () => {
 
      try {
-       const usuario = {
-         nome: inputNome,
-         nota: inputNota,
-         professorOuAluno: inputProfessorOuAluno  
+        const usuario = {
+          nome: inputNome,
+          nota: parseFloat(inputNota), // muito importante: transformar em número
+          professorOuAluno: inputProfessorOuAluno
         };
         if (!inputNome && !inputNota && !inputProfessorOuAluno) {
         setErro('Preencha os campos vázios')
@@ -96,10 +96,12 @@ function Navbar() {
 
      <nav className="navbar">
         <ul className="menu">
+          <li><Link to={'/'}>Home</Link></li>
             <li><Link to={'/consumodeagua'}>Água</Link></li>
-            <li><Link to={'/'}>Energia</Link></li>
-            <li><Link to={'/'}>Reciclagem</Link></li>
-            <li><Link to={'/'}>Sobre</Link></li>
+            <li><Link to={'/consumodeenergia'}>Energia</Link></li>
+            <li><Link to={'/dicasdereciclagem'}>Reciclagem</Link></li>
+            <li><a href='https://github.com/Tiago-burlamaque/Feira-de-Ciencias'>Desenvolvimento</a></li>
+            <li><Link to={'/quiz'}>Quiz</Link></li>
         </ul>
   <button onClick={toggleDarkMode} className='btn-dark-mode'>
         {darkMode ? '☀️ Modo Claro' : '🌙 Modo Escuro'}
@@ -143,7 +145,7 @@ function Navbar() {
 
           {/* <select value={options} onChange={(e) => setOptions(e.target.value)}> 
             <option value="">Selecionar</option>
-            <option value="professor">Avaliador/professor</option>
+            <option vualue="professor">Avaliador/professor</option>
             <option value="aluno">Aluno</option>
           </select> */}
 

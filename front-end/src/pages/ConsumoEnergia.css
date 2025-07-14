@@ -1,0 +1,46 @@
+.container-site h1{
+    margin-bottom: 20px;
+}
+.colunas{
+    margin: 10px 0px;
+}
+p{
+    margin-top: 40px;
+}
+.resto-site{
+    display: flex;
+}
+.texto:last-child{
+    margin-right: 20px;
+}
+.texto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: start;
+
+    margin-left: 20px;
+    border: none;
+    box-shadow: 0 0 10px #000;
+    width: 20%;
+    padding: 10px;
+    border-radius: 10px;
+}
+.colunas li{
+    margin-bottom: 20px;
+}
+.colunas li:last-child{
+    margin-bottom: 0px;
+}
+.titulo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+.resto-site{
+    margin-bottom: 100px;
+}

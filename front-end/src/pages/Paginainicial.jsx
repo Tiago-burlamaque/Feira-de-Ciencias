@@ -17,7 +17,7 @@ function Paginainicial() {
       <div className="container">
       <div className="container-site">
          <h1>O <span>futuro</span> pode estar a sua <span>frente</span>!</h1>
-            <p className='texto'> O consumo é o ato de adquirir e utilizar bens ou serviços para satisfazer as necessidades e desejos humanos. Ele é uma parte fundamental da economia, pois impulsiona a produção e o desenvolvimento de mercados. O consumo pode ser dividido em dois tipos: necessário, como alimentos, roupas e moradia, e supérfluo, que abrange produtos e serviços que vão além das necessidades básicas, como luxo e entretenimento.
+            <p className='texto-home'> O consumo é o ato de adquirir e utilizar bens ou serviços para satisfazer as necessidades e desejos humanos. Ele é uma parte fundamental da economia, pois impulsiona a produção e o desenvolvimento de mercados. O consumo pode ser dividido em dois tipos: necessário, como alimentos, roupas e moradia, e supérfluo, que abrange produtos e serviços que vão além das necessidades básicas, como luxo e entretenimento.
 
 Nos dias de hoje, o consumo tem se tornado cada vez mais influenciado pela publicidade, pela cultura de "acumular" e pela pressão social. Isso pode levar a padrões de consumo insustentáveis, impactando o meio ambiente e a sociedade. Por isso, práticas como o consumo consciente, que visa a escolha de produtos mais sustentáveis e a redução de desperdícios, têm ganhado relevância.
 

@@ -1,0 +1,28 @@
+.container-rodape{
+    width: 100%;
+    background-color: brown;
+}
+.texto-rodape{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 0px 20px;
+    gap: 20px;
+}
+.texto-rodape li{
+    margin-bottom: 10px;
+}
+.container-integrantes{
+    display: flex;
+}
+.suas-acoes{
+    margin-left: 70%;
+}
+.copyright{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+}

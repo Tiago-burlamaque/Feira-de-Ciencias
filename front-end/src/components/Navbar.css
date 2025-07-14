@@ -107,7 +107,9 @@ body {
     transition: background-color 0.3s ease;
 }
 
-
+a{
+    color: ;
+}
 /* Tema claro (padrão) */
 body {
   margin: 0;
@@ -175,4 +177,3 @@ button {
     background-color: #222;
     box-shadow: 0 0 15px #222;  
 }
-
