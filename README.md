@@ -10,7 +10,6 @@ Projeto feito com React, focado em Aprimorar o back-end.
 - Express 
 - JavaScript
 - CSS
-- [outras]
 
 ## Como rodar localmente
 1. Clone o repositório
